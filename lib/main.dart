@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memo_app/memo_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -46,24 +47,36 @@ class _MyHomePageState extends State<MyHomePage> {
       body: ListView.builder(
         itemCount: _memolist.length,
         itemBuilder: (BuildContext context, int i) {
-          return Column(
-            children: [
-              ListTile(
-                leading: Icon(Icons.vpn_key),
-              ),
-              TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Write Something',
+          return Dismissible(
+            key: UniqueKey(), 
+            direction: DismissDirection.endToStart,
+            background: Container(
+              alignment: AlignmentDirectional.centerEnd,
+              color: Colors.redAccent,
+            ),
+            child: Column(
+              children: [
+                ListTile(
+                  leading: Icon(Icons.vpn_key),
                 ),
-              ),
-            ],
+                TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Winter is Coming ...',
+                  ),
+                ),
+              ],
+            ),
           );
         },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed:() {
           _memolist.add(_counter.toString());
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => MemoPage())
+            );
           setState(() {});
         },
         tooltip: 'Increment',
