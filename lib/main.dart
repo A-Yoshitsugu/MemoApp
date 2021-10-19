@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memo_app/memo_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -72,6 +73,10 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed:() {
           _memolist.add(_counter.toString());
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => MemoPage())
+            );
           setState(() {});
         },
         tooltip: 'Increment',
